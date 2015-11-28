@@ -21,8 +21,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/lge/d850/device.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_DEVICE := aosp_d850
-PRODUCT_NAME := d850
+PRODUCT_DEVICE := d850
+PRODUCT_NAME := aosp_d850
 PRODUCT_BRAND := lge
 PRODUCT_MODEL := LG-D850
 PRODUCT_MANUFACTURER := LGE
@@ -33,7 +33,7 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 # Enhanced NFC
 $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 
-PRODUCT_NAME := d850
+PRODUCT_NAME := aosp_d850
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_DEVICE="g3" \
