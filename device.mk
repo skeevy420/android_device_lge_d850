@@ -21,7 +21,11 @@ $(call inherit-product-if-exists, vendor/lge/d850/d850-vendor.mk)
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/lge/g3-common/configs/mixer_paths_qcwcn.xml:system/etc/mixer_paths.xml
+    device/lge/g3-common/configs/audio/mixer_paths_qcwcn.xml:system/etc/mixer_paths.xml
+
+# NFC
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -31,23 +35,27 @@ PRODUCT_PACKAGES += \
     init.galbi.bt.sh \
     init.galbi.bt_vendor.rc
 
-# Thermal
+# GPS
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
+    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 
 # Wifi
 PRODUCT_PACKAGES += \
+    hostapd_default.conf \
     libwcnss_qmi \
     wcnss_service
 
+# NFC packages
+PRODUCT_PACKAGES += \
+    NfcNci \
+    nfc_nci.pn54x.default
+
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
-    $(LOCAL_PATH)/wifi/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
-    $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+    device/lge/g3-common/wcnss/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+    device/lge/g3-common/wcnss/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    device/lge/g3-common/wcnss/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
+    device/lge/g3-common/wcnss/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    device/lge/g3-common/wcnss/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 # common g3
 $(call inherit-product, device/lge/g3-common/g3.mk)
